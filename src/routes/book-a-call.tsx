@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useMemo, useState, FormEvent } from "react";
+import { useEffect, useMemo, useState, FormEvent } from "react";
 import { createBooking } from "@/utils/booking.functions";
 
 export const Route = createFileRoute("/book-a-call")({
@@ -54,7 +54,10 @@ function BookACall() {
   const [submitting, setSubmitting] = useState(false);
   const [done, setDone] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const tz = useMemo(() => Intl.DateTimeFormat().resolvedOptions().timeZone, []);
+  const [tz, setTz] = useState<string>("your local time");
+  useEffect(() => {
+    setTz(Intl.DateTimeFormat().resolvedOptions().timeZone);
+  }, []);
 
   const slots = useMemo(() => {
     const all = buildSlotsForDay(selectedDay);

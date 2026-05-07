@@ -103,9 +103,21 @@ function BookACall() {
     try {
       await createBooking({ data: payload });
       setDone(true);
-    } catch (err) {
+    } catch (err: any) {
       console.error(err);
-      setError("Could not book your call. Please try again or email us.");
+      const msg = String(err?.message || "");
+      if (msg.includes("SLOT_TAKEN")) {
+        setError("Sorry, that time was just booked by someone else. Please pick another slot.");
+        // Refresh busy list
+        const timeMin = days[0];
+        const timeMax = new Date(days[days.length - 1].getTime() + 24 * 60 * 60 * 1000);
+        listBookedSlots({ data: { timeMinISO: timeMin.toISOString(), timeMaxISO: timeMax.toISOString() } })
+          .then((res) => setBusy(res.busy.map((b) => ({ start: new Date(b.start).getTime(), end: new Date(b.end).getTime() }))))
+          .catch(() => {});
+        setSelectedSlot(null);
+      } else {
+        setError("Could not book your call. Please try again or email us.");
+      }
     } finally {
       setSubmitting(false);
     }

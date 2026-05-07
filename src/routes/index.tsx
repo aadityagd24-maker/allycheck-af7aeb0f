@@ -1,5 +1,5 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useState, FormEvent } from "react";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -46,11 +46,10 @@ function Nav() {
           <a href="#services" className="text-link">Services</a>
           <a href="#process" className="text-link">Our Process</a>
           <a href="#why-manual" className="text-link">Why Manual?</a>
-          <a href="#contact" className="text-link">Contact</a>
         </nav>
-        <a href="#contact" className="btn-primary" style={{ padding: "0.6rem 1.4rem", fontSize: "0.875rem" }}>
-          Request Assessment
-        </a>
+        <Link to="/book-a-call" className="btn-primary" style={{ padding: "0.6rem 1.4rem", fontSize: "0.875rem" }}>
+          Book a Call
+        </Link>
       </div>
     </header>
   );
@@ -79,7 +78,7 @@ function Hero() {
             AllyCheck provides manual accessibility audits and VPAT certification that enterprise procurement teams actually accept. Stop losing deals. Start closing them.
           </p>
           <div className="mt-10 flex flex-wrap items-center gap-6 fade-up" style={{ animationDelay: "360ms" }}>
-            <a href="#contact" className="btn-primary">Request a Risk Assessment</a>
+            <Link to="/book-a-call" className="btn-primary">Book a Call</Link>
             <a href="#process" className="text-link">See How It Works →</a>
           </div>
           <p
@@ -294,7 +293,7 @@ function Services() {
               <h3 className="h3 mt-6">{c.t}</h3>
               <p className="mt-4" style={{ color: "var(--ink-secondary)", fontSize: "1rem" }}>{c.b}</p>
               <div className="mt-8 pt-6" style={{ borderTop: "1px solid var(--rule)" }}>
-                <a href="#contact" className="text-link" style={{ color: "var(--accent)" }}>Learn more →</a>
+                <Link to="/book-a-call" className="text-link" style={{ color: "var(--accent)" }}>Book a call →</Link>
               </div>
             </article>
           ))}
@@ -411,99 +410,6 @@ function Quote() {
   );
 }
 
-function Contact() {
-  const [submitted, setSubmitted] = useState(false);
-  const onSubmit = (e: FormEvent) => {
-    e.preventDefault();
-    setSubmitted(true);
-  };
-  const inputStyle: React.CSSProperties = {
-    border: "1px solid var(--rule)",
-    borderRadius: "2px",
-    padding: "0.85rem 1rem",
-    background: "#fff",
-    width: "100%",
-    fontFamily: "var(--font-sans)",
-    fontSize: "0.95rem",
-    color: "var(--ink)",
-  };
-  return (
-    <section id="contact" className="section" style={{ background: "var(--bg)" }}>
-      <div className="container-x grid lg:grid-cols-2 gap-16">
-        <div>
-          <div className="eyebrow">Get Started</div>
-          <h2 className="h2 mt-5">Request Your Accessibility Risk Assessment</h2>
-          <p className="mt-6" style={{ color: "var(--ink-secondary)", maxWidth: "520px" }}>
-            Tell us about your product and your compliance timeline. We'll respond within one business day with a scoping proposal — no obligation, no sales call unless you want one.
-          </p>
-        </div>
-
-        <div style={{ maxWidth: "560px", width: "100%" }}>
-          {submitted ? (
-            <div
-              style={{
-                background: "#fff",
-                border: "1px solid var(--rule)",
-                padding: "3rem 2rem",
-                textAlign: "center",
-              }}
-            >
-              <h3 className="h3">Thank you.</h3>
-              <p className="mt-3" style={{ color: "var(--ink-secondary)" }}>
-                We'll be in touch within one business day.
-              </p>
-            </div>
-          ) : (
-            <form onSubmit={onSubmit} className="space-y-4" aria-label="Risk assessment request form">
-              <div>
-                <label htmlFor="name" className="sr-only">Full Name</label>
-                <input id="name" required placeholder="Full Name" style={inputStyle} />
-              </div>
-              <div>
-                <label htmlFor="company" className="sr-only">Company Name</label>
-                <input id="company" required placeholder="Company Name" style={inputStyle} />
-              </div>
-              <div>
-                <label htmlFor="email" className="sr-only">Work Email</label>
-                <input id="email" type="email" required placeholder="Work Email" style={inputStyle} />
-              </div>
-              <div>
-                <label htmlFor="url" className="sr-only">Product URL</label>
-                <input id="url" placeholder="https://yourapp.com" style={inputStyle} />
-              </div>
-              <div>
-                <label htmlFor="deadline" className="sr-only">Compliance Deadline</label>
-                <select id="deadline" style={inputStyle} defaultValue="">
-                  <option value="" disabled>Compliance Deadline</option>
-                  <option>Before June 2025</option>
-                  <option>June–December 2025</option>
-                  <option>2026 or flexible</option>
-                  <option>Already facing a deal blocker</option>
-                </select>
-              </div>
-              <div>
-                <label htmlFor="message" className="sr-only">Message</label>
-                <textarea
-                  id="message"
-                  rows={4}
-                  placeholder="Tell us about your product and any specific compliance concerns..."
-                  style={inputStyle}
-                />
-              </div>
-              <button type="submit" className="btn-primary" style={{ width: "100%", justifyContent: "center", padding: "1rem" }}>
-                Request My Risk Assessment →
-              </button>
-              <p style={{ fontSize: "0.8rem", color: "var(--ink-secondary)", marginTop: "0.75rem" }}>
-                Your information is never shared. We respond within one business day.
-              </p>
-            </form>
-          )}
-        </div>
-      </div>
-    </section>
-  );
-}
-
 function Footer() {
   return (
     <footer style={{ background: "var(--surface)", borderTop: "1px solid var(--rule)" }}>
@@ -518,10 +424,10 @@ function Footer() {
           <a href="#services" className="text-link w-fit">Services</a>
           <a href="#process" className="text-link w-fit">Our Process</a>
           <a href="#why-manual" className="text-link w-fit">Why Manual</a>
-          <a href="#contact" className="text-link w-fit">Contact</a>
+          <Link to="/book-a-call" className="text-link w-fit">Book a Call</Link>
         </div>
         <div>
-          <a href="#contact" className="btn-outline">Get Certified</a>
+          <Link to="/book-a-call" className="btn-outline">Book a Call</Link>
         </div>
       </div>
       <div style={{ borderTop: "1px solid var(--rule)" }}>
@@ -551,7 +457,6 @@ function Index() {
         <Services />
         <Process />
         <Quote />
-        <Contact />
       </main>
       <Footer />
     </div>

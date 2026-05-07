@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMemo, useState, FormEvent } from "react";
-import { createBooking } from "@/server/booking.functions";
+import { createBooking } from "@/utils/booking.functions";
 
 export const Route = createFileRoute("/book-a-call")({
   component: BookACall,

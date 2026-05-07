@@ -159,11 +159,12 @@ function BookACall() {
             className="mt-12"
             style={{ background: "#fff", border: "1px solid var(--rule)", padding: "3rem 2rem", textAlign: "center", maxWidth: "640px" }}
           >
-            <h3 className="h3">You're booked.</h3>
+            <h3 className="h3">Thank you for your booking!</h3>
             <p className="mt-3" style={{ color: "var(--ink-secondary)" }}>
+              We've sent you an email with your booking details.
               {selectedSlot && (
                 <>
-                  We've added <strong>{fmtDayLabel(selectedSlot)} at {fmtTime(selectedSlot)}</strong> to the calendar and sent you a confirmation.
+                  {" "}Your call is confirmed for <strong>{fmtDayLabel(selectedSlot)} at {fmtTime(selectedSlot)}</strong>.
                 </>
               )}
             </p>

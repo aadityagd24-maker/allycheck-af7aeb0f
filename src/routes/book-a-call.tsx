@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useMemo, useState, FormEvent } from "react";
-import { createBooking } from "@/utils/booking.functions";
+import { createBooking, listBookedSlots } from "@/utils/booking.functions";
 
 export const Route = createFileRoute("/book-a-call")({
   component: BookACall,
@@ -55,15 +55,34 @@ function BookACall() {
   const [done, setDone] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [tz, setTz] = useState<string>("your local time");
+  const [busy, setBusy] = useState<{ start: number; end: number }[]>([]);
   useEffect(() => {
     setTz(Intl.DateTimeFormat().resolvedOptions().timeZone);
   }, []);
 
+  // Fetch booked slots for the visible day range whenever days change
+  useEffect(() => {
+    let cancelled = false;
+    const timeMin = days[0];
+    const timeMax = new Date(days[days.length - 1].getTime() + 24 * 60 * 60 * 1000);
+    listBookedSlots({ data: { timeMinISO: timeMin.toISOString(), timeMaxISO: timeMax.toISOString() } })
+      .then((res) => {
+        if (cancelled) return;
+        setBusy(res.busy.map((b) => ({ start: new Date(b.start).getTime(), end: new Date(b.end).getTime() })));
+      })
+      .catch((e) => console.error("Failed to load busy slots", e));
+    return () => { cancelled = true; };
+  }, [days]);
+
   const slots = useMemo(() => {
     const all = buildSlotsForDay(selectedDay);
-    // Filter past slots (for today)
-    return all.filter((s) => s.getTime() > Date.now());
-  }, [selectedDay]);
+    return all.filter((s) => {
+      if (s.getTime() <= Date.now()) return false;
+      const slotEnd = s.getTime() + SLOT_MINUTES * 60 * 1000;
+      // Block if overlaps any busy event
+      return !busy.some((b) => s.getTime() < b.end && slotEnd > b.start);
+    });
+  }, [selectedDay, busy]);
 
   const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -84,9 +103,21 @@ function BookACall() {
     try {
       await createBooking({ data: payload });
       setDone(true);
-    } catch (err) {
+    } catch (err: any) {
       console.error(err);
-      setError("Could not book your call. Please try again or email us.");
+      const msg = String(err?.message || "");
+      if (msg.includes("SLOT_TAKEN")) {
+        setError("Sorry, that time was just booked by someone else. Please pick another slot.");
+        // Refresh busy list
+        const timeMin = days[0];
+        const timeMax = new Date(days[days.length - 1].getTime() + 24 * 60 * 60 * 1000);
+        listBookedSlots({ data: { timeMinISO: timeMin.toISOString(), timeMaxISO: timeMax.toISOString() } })
+          .then((res) => setBusy(res.busy.map((b) => ({ start: new Date(b.start).getTime(), end: new Date(b.end).getTime() }))))
+          .catch(() => {});
+        setSelectedSlot(null);
+      } else {
+        setError("Could not book your call. Please try again or email us.");
+      }
     } finally {
       setSubmitting(false);
     }
@@ -128,11 +159,12 @@ function BookACall() {
             className="mt-12"
             style={{ background: "#fff", border: "1px solid var(--rule)", padding: "3rem 2rem", textAlign: "center", maxWidth: "640px" }}
           >
-            <h3 className="h3">You're booked.</h3>
+            <h3 className="h3">Thank you for your booking!</h3>
             <p className="mt-3" style={{ color: "var(--ink-secondary)" }}>
+              We've sent you an email with your booking details.
               {selectedSlot && (
                 <>
-                  We've added <strong>{fmtDayLabel(selectedSlot)} at {fmtTime(selectedSlot)}</strong> to the calendar and sent you a confirmation.
+                  {" "}Your call is confirmed for <strong>{fmtDayLabel(selectedSlot)} at {fmtTime(selectedSlot)}</strong>.
                 </>
               )}
             </p>

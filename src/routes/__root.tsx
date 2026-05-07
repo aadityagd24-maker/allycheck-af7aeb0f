@@ -72,14 +72,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
+      { title: "AllyCheck" },
+      { name: "description", content: "AllyCheck offers B2B SaaS companies expert accessibility auditing and VPAT certification for EAA and UK Equality Act compliance." },
       { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { property: "og:title", content: "AllyCheck" },
+      { property: "og:description", content: "AllyCheck offers B2B SaaS companies expert accessibility auditing and VPAT certification for EAA and UK Equality Act compliance." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "AllyCheck" },
+      { name: "twitter:description", content: "AllyCheck offers B2B SaaS companies expert accessibility auditing and VPAT certification for EAA and UK Equality Act compliance." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/9fe5edeb-b59c-470f-8ad7-fe447aadec32/id-preview-56b6a5c4--d8649ab4-70c8-4ff7-bcf4-19568ebcec0e.lovable.app-1778150327162.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/9fe5edeb-b59c-470f-8ad7-fe447aadec32/id-preview-56b6a5c4--d8649ab4-70c8-4ff7-bcf4-19568ebcec0e.lovable.app-1778150327162.png" },
     ],
     links: [
       {

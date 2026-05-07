@@ -55,15 +55,34 @@ function BookACall() {
   const [done, setDone] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [tz, setTz] = useState<string>("your local time");
+  const [busy, setBusy] = useState<{ start: number; end: number }[]>([]);
   useEffect(() => {
     setTz(Intl.DateTimeFormat().resolvedOptions().timeZone);
   }, []);
 
+  // Fetch booked slots for the visible day range whenever days change
+  useEffect(() => {
+    let cancelled = false;
+    const timeMin = days[0];
+    const timeMax = new Date(days[days.length - 1].getTime() + 24 * 60 * 60 * 1000);
+    listBookedSlots({ data: { timeMinISO: timeMin.toISOString(), timeMaxISO: timeMax.toISOString() } })
+      .then((res) => {
+        if (cancelled) return;
+        setBusy(res.busy.map((b) => ({ start: new Date(b.start).getTime(), end: new Date(b.end).getTime() })));
+      })
+      .catch((e) => console.error("Failed to load busy slots", e));
+    return () => { cancelled = true; };
+  }, [days]);
+
   const slots = useMemo(() => {
     const all = buildSlotsForDay(selectedDay);
-    // Filter past slots (for today)
-    return all.filter((s) => s.getTime() > Date.now());
-  }, [selectedDay]);
+    return all.filter((s) => {
+      if (s.getTime() <= Date.now()) return false;
+      const slotEnd = s.getTime() + SLOT_MINUTES * 60 * 1000;
+      // Block if overlaps any busy event
+      return !busy.some((b) => s.getTime() < b.end && slotEnd > b.start);
+    });
+  }, [selectedDay, busy]);
 
   const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();

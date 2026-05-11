@@ -1,40 +1,7 @@
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
-
-function Nav() {
-  const [scrolled, setScrolled] = useState(false);
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-  return (
-    <header
-      className="sticky top-0 z-50"
-      style={{
-        background: "var(--bg)",
-        borderBottom: "1px solid var(--rule)",
-        boxShadow: scrolled ? "0 1px 8px rgba(0,0,0,0.06)" : "none",
-        transition: "box-shadow 250ms ease",
-      }}
-    >
-      <div className="container-x flex items-center justify-between py-4">
-        <a href="#top" style={{ fontFamily: "var(--font-display)", fontSize: "1.25rem", color: "var(--ink)" }}>
-          AllyCheck
-        </a>
-        <nav className="hidden md:flex items-center gap-8" style={{ fontSize: "0.875rem" }}>
-          <a href="#services" className="text-link">Services</a>
-          <a href="#process" className="text-link">Our Process</a>
-          <a href="#why-manual" className="text-link">Why Manual?</a>
-        </nav>
-        <Link to="/book-a-call" className="btn-primary" style={{ padding: "0.6rem 1.4rem", fontSize: "0.875rem" }}>
-          Book a Call
-        </Link>
-      </div>
-    </header>
-  );
-}
+import Nav from "@/components/Nav";
+import Footer from "@/components/Footer";
 
 function Hero() {
   return (
@@ -285,36 +252,22 @@ function Quote() {
   );
 }
 
-function Footer() {
+function WhoWeAre() {
   return (
-    <footer style={{ background: "var(--surface)", borderTop: "1px solid var(--rule)" }}>
-      <div className="container-x py-16 grid md:grid-cols-3 gap-10">
-        <div>
-          <div style={{ fontFamily: "var(--font-display)", fontSize: "1.5rem" }}>AllyCheck</div>
-          <p className="mt-3" style={{ color: "var(--ink-secondary)", fontSize: "0.95rem", maxWidth: "320px" }}>
-            Manual Accessibility Audits & VPAT Certification for SaaS Companies.
-          </p>
-        </div>
-        <div className="flex flex-col gap-2" style={{ fontSize: "0.95rem" }}>
-          <a href="#services" className="text-link w-fit">Services</a>
-          <a href="#process" className="text-link w-fit">Our Process</a>
-          <a href="#why-manual" className="text-link w-fit">Why Manual</a>
-          <Link to="/book-a-call" className="text-link w-fit">Book a Call</Link>
-        </div>
-        <div>
-          <Link to="/book-a-call" className="btn-outline">Book a Call</Link>
-        </div>
+    <section className="section" style={{ background: "var(--surface)" }}>
+      <div className="container-x text-center">
+        <div className="eyebrow">Who We Are</div>
+        <h2 className="h2 mt-5" style={{ maxWidth: "780px", margin: "1.25rem auto 0" }}>
+          Senior auditors. No juniors. No automation.
+        </h2>
+        <p className="mt-6" style={{ color: "var(--ink-secondary)", maxWidth: "600px", margin: "1.5rem auto 0", fontSize: "1.05rem" }}>
+          AllyCheck was founded to fill a gap in the market — accessible, senior-led auditing for SaaS companies who need compliance documentation that actually holds up to enterprise scrutiny. Every audit is conducted by a certified accessibility professional with hands-on assistive technology experience.
+        </p>
+        <p className="mt-6" style={{ color: "var(--ink-secondary)", fontSize: "0.85rem", letterSpacing: "0.02em" }}>
+          Certified under IAAP CPACC framework. Operating across EU, UK, and Indian SaaS markets.
+        </p>
       </div>
-      <div style={{ borderTop: "1px solid var(--rule)" }}>
-        <div className="container-x py-6 flex flex-wrap justify-between gap-3" style={{ fontSize: "0.8rem", color: "var(--ink-secondary)" }}>
-          <div>© 2025 AllyCheck. All rights reserved.</div>
-          <div className="flex gap-6">
-            <a href="#" className="text-link">Privacy Policy</a>
-            <a href="#" className="text-link">Terms of Service</a>
-          </div>
-        </div>
-      </div>
-    </footer>
+    </section>
   );
 }
 
@@ -332,6 +285,7 @@ export default function Home() {
         <RiskSection />
         <Services />
         <Process />
+        <WhoWeAre />
         <Quote />
       </main>
       <Footer />

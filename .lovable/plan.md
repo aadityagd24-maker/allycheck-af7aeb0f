@@ -1,56 +1,60 @@
 ## Goal
 
-Make the site a 100% static Vite SPA so it deploys anywhere (Vercel, Netlify, Cloudflare Pages, GitHub Pages, S3, etc.) with no server runtime.
+Add new pages and small additions to AllyCheck without touching existing section designs, tokens, or styles.
 
-## Heads-up before we start
+## Changes
 
-- The Lovable editor's preview/publish pipeline is tuned for the TanStack Start template. After this conversion, the in-editor preview and the `lovable.app` publish flow may behave differently or break. You'll be deploying via Vercel/your own host instead.
-- The current `/book-a-call` page calls Google Calendar through a server function. A static SPA has no server, so the booking flow as it exists today cannot continue to work. Per your choice, we're dropping the backend.
+### 1. New route `/book` — `src/pages/Book.tsx`
+- Reuse existing `Nav` and `Footer` (extract from `Home.tsx` into `src/components/Nav.tsx` and `src/components/Footer.tsx` so `/book`, `/privacy`, `/terms` can share — Home keeps identical visual output).
+- Two-column layout (60/40 desktop, stacked mobile) using existing tokens (`--accent`, `--ink-secondary`, `var(--font-display)`, `.section`, `.container-x`, `.eyebrow`, `.h2`).
+- Left column: eyebrow "BOOK A CALL", H2 "Let's talk about your EAA exposure.", body copy, three trust lines with `→` accent bullets.
+- Right column: Cal.com inline embed for `allycheck/30min`. Implement via a small React effect that injects the Cal embed loader script once, then calls `Cal("init", …)` and `Cal("inline", { elementOrSelector: "#cal-embed", calLink: "allycheck/30min", config: { layout: "month_view" } })`. Container `<div id="cal-embed" style={{ width: "100%", minHeight: 600 }} />`. Cleanup on unmount.
+- Helmet title/description for SEO.
 
-## What changes
+### 2. Nav additions (in extracted `Nav.tsx`)
+- Add a second CTA "Book a Call →" next to existing primary CTA. Style: transparent bg, `1px solid var(--accent)`, text `var(--accent)`, same padding/size as the existing pill button. Links to `/book` via `<Link>`.
+- Keep existing "Book a Call" primary button as-is (it currently routes to `/book-a-call`). Note: site currently uses one CTA labeled "Book a Call" → `/book-a-call`. Per instructions the new ghost button is the second CTA labeled "Book a Call →" → `/book`. The existing primary remains untouched.
+- Mobile: there is no hamburger menu in current code (nav links hide under `md`). Will add a "Book a Call" link to the existing desktop nav list shown ≥md and leave the existing primary CTA visible on mobile as today. (No hamburger exists to modify.)
 
-### 1. Stack swap
-- Remove TanStack Start, TanStack Router, Cloudflare plugin, server-entry, error-page, error-capture, start.ts, server.ts, wrangler.jsonc, `@lovable.dev/vite-tanstack-config`.
-- Add `react-router-dom@6`.
-- Replace `vite.config.ts` with a plain `@vitejs/plugin-react` + `@tailwindcss/vite` + `vite-tsconfig-paths` config.
-- Add standard SPA entry: `index.html` at project root + `src/main.tsx` mounting `<BrowserRouter>`.
+### 3. New route `/privacy` — `src/pages/Privacy.tsx`
+- Shared `Nav` + `Footer`. `<main class="section">` with `container-x`, `max-width: 720px`, single column.
+- H1 serif "Privacy Policy", muted "Last updated: May 2025" caption, then six H3 sections with provided copy verbatim.
 
-### 2. Routing
-- New `src/App.tsx` defines routes with `react-router-dom`:
-  - `/` → home
-  - `/book-a-call` → new static version (see below)
-  - `*` → 404
-- Rewrite `src/routes/index.tsx` content into `src/pages/Home.tsx` (same JSX, swap `Link` import to `react-router-dom`, change `to="/book-a-call"` style props to RR equivalents).
-- Move shared shell (head meta) to `react-helmet-async` or a small custom `<Head>` component, since there's no SSR head pipeline anymore.
-- Delete `src/routes/`, `src/router.tsx`, `src/routeTree.gen.ts`.
+### 4. New route `/terms` — `src/pages/Terms.tsx`
+- Same layout shell as `/privacy`. Five H3 sections with provided copy verbatim.
 
-### 3. Booking page (no backend)
-Two options for `/book-a-call`:
-- **A. Static "Contact us" page** — keep the design, replace the form with a mailto link / contact info block. No calendar.
-- **B. Embedded scheduler** — drop in a Calendly / Cal.com / SavvyCal iframe so visitors still self-book. Requires you to give me the embed URL.
+### 5. Footer additions (in extracted `Footer.tsx`)
+- Add `hello@allycheck.in` as a `mailto:` link in the brand column under the tagline; same text style with hover underline.
+- Add `Privacy Policy` → `/privacy` and `Terms of Service` → `/terms` to the existing link list (these currently exist as `#` placeholders in the bottom bar — repoint them to real routes).
+- Add new caption line under copyright: "AllyCheck is a registered accessibility consultancy. Registered in India." Same small muted style.
 
-Default: ship option A; switch to B later if you share an embed link.
+### 6. New "Who We Are" strip on Home
+- Insert between `Process` and `Quote` sections in `Home.tsx`.
+- Full-width `section` with `background: var(--surface)`, centered content, existing `.section` padding.
+- Eyebrow "WHO WE ARE", H2 serif "Senior auditors. No juniors. No automation.", body text (max-width 600px centered, `--ink-secondary`), final muted caption "Certified under IAAP CPACC framework. Operating across EU, UK, and Indian SaaS markets."
 
-Delete `src/utils/booking.functions.ts`.
+### 7. Routing
+- Update `src/App.tsx` to register `/book`, `/privacy`, `/terms`. Keep existing `/book-a-call` so nothing breaks.
 
-### 4. Vercel deploy config
-- Add `vercel.json` with SPA rewrite:
-  ```json
-  { "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }] }
-  ```
-- This same SPA fallback pattern works on Netlify (`_redirects`) and Cloudflare Pages — easy to add later if needed.
+## Technical notes
 
-### 5. SEO note
-Going SPA loses SSR-rendered meta tags. Modern crawlers (Google) execute JS so titles/descriptions still get indexed via `react-helmet-async`, but link previews on some social platforms may be weaker than with SSR. Acceptable for a small marketing site.
+- Cal.com loader: insert `<script src="https://app.cal.com/embed/embed.js">` once via `useEffect` (guard with `window.Cal`), then call the init/inline functions. TypeScript: cast `window as any` to avoid global typing churn. Cleanup empties the container so React StrictMode double-mount in dev doesn't stack widgets.
+- No new dependencies. No design token changes. No edits to `styles.css`.
+- All internal navigation uses `react-router-dom` `<Link>`.
+- Vercel SPA rewrites (`vercel.json` + `public/_redirects`) already handle deep links to the new routes.
 
-## File-level summary
+## Files
 
-**Delete:** `src/routes/`, `src/router.tsx`, `src/routeTree.gen.ts`, `src/server.ts`, `src/start.ts`, `src/lib/error-capture.ts`, `src/lib/error-page.ts`, `src/utils/booking.functions.ts`, `wrangler.jsonc`.
+**Create:** `src/components/Nav.tsx`, `src/components/Footer.tsx`, `src/pages/Book.tsx`, `src/pages/Privacy.tsx`, `src/pages/Terms.tsx`.
 
-**Create:** `index.html`, `src/main.tsx`, `src/App.tsx`, `src/pages/Home.tsx`, `src/pages/BookACall.tsx`, `src/pages/NotFound.tsx`, `vercel.json`.
+**Edit:** `src/App.tsx` (3 new routes), `src/pages/Home.tsx` (import shared Nav/Footer, add About strip between Process and Quote — Home's visual output unchanged otherwise).
 
-**Rewrite:** `vite.config.ts`, `package.json` (deps + scripts).
+**Untouched:** `styles.css`, all existing sections (Hero, TrustBar, Risk, Services, Process, Quote), `BookACall.tsx`, `vite.config.ts`, deploy configs.
 
 ## Open question
 
-For `/book-a-call`, do you want **A. static contact page** now, or **B. provide a Calendly/Cal.com embed link** so people can still self-book? I'll proceed with A unless you say otherwise.
+The current nav already has a primary "Book a Call" CTA pointing to `/book-a-call` (the static contact page). Do you want me to:
+- **A.** Keep both: existing primary "Book a Call" → `/book-a-call`, plus new ghost "Book a Call →" → `/book` (literal reading of your spec, but two identical labels).
+- **B.** Repoint the existing primary CTA to `/book` and drop `/book-a-call` from the nav (cleaner, single CTA).
+
+I'll go with **B** unless you say otherwise.

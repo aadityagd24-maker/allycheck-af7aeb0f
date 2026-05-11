@@ -111,7 +111,7 @@ export default function Book() {
                 fontSize: "0.95rem",
               }}
             >
-              Times are shown in your browser timezone: <strong style={{ color: "var(--ink)" }}>{browserTimeZone}</strong>.
+              Select your timezone. <strong style={{ color: "var(--ink)" }}>{browserTimeZone}</strong>
             </div>
           </div>
           <div className="lg:col-span-2">

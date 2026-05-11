@@ -1,6 +1,5 @@
 import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
-import BookACall from "./pages/BookACall";
 import Book from "./pages/Book";
 import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
@@ -11,7 +10,6 @@ export default function App() {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/book" element={<Book />} />
-      <Route path="/book-a-call" element={<BookACall />} />
       <Route path="/privacy" element={<Privacy />} />
       <Route path="/terms" element={<Terms />} />
       <Route path="*" element={<NotFound />} />

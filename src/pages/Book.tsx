@@ -5,17 +5,7 @@ import Footer from "@/components/Footer";
 
 const CAL_LINK = "allycheck/15min";
 
-function getBrowserTimeZone() {
-  try {
-    return Intl.DateTimeFormat().resolvedOptions().timeZone || "your local timezone";
-  } catch {
-    return "your local timezone";
-  }
-}
-
 export default function Book() {
-  const browserTimeZone = getBrowserTimeZone();
-
   useEffect(() => {
     const w = window as any;
     const init = () => {
@@ -111,7 +101,7 @@ export default function Book() {
                 fontSize: "0.95rem",
               }}
             >
-              Select your timezone. <strong style={{ color: "var(--ink)" }}>{browserTimeZone}</strong>
+              Select your timezone.
             </div>
           </div>
           <div className="lg:col-span-2">

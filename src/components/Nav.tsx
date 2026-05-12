@@ -22,16 +22,20 @@ export default function Nav() {
       }}
     >
       <div className="container-x flex items-center justify-between py-4 gap-4">
-        <Link
-          to="/"
-          style={{
-            fontFamily: "var(--font-display)",
-            fontSize: "1.25rem",
-            color: "var(--ink)",
-          }}
+        <SectionLink
+          sectionId="top"
+          className="inline-flex items-center"
         >
-          AllyCheck
-        </Link>
+          <span
+            style={{
+              fontFamily: "var(--font-display)",
+              fontSize: "1.25rem",
+              color: "var(--ink)",
+            }}
+          >
+            AllyCheck
+          </span>
+        </SectionLink>
 
         <nav
           className="hidden md:flex items-center gap-8"

@@ -7,7 +7,7 @@ const sections = [
   { t: "Use of This Website", b: "This website is provided for informational purposes. You may not reproduce, distribute, or repurpose any content from this site without written permission from AllyCheck." },
   { t: "Limitation of Liability", b: "AllyCheck's liability in connection with any service is limited to the fees paid for that specific engagement. We are not liable for indirect or consequential losses." },
   { t: "Governing Law", b: "These terms are governed by the laws of India. Any disputes shall be subject to the jurisdiction of the courts of India." },
-  { t: "Contact", b: "For any questions regarding these terms, contact us at hello@allycheck.in." },
+  { t: "Contact", b: "For any questions regarding these terms, contact us at addy@allycheck.in." },
 ];
 
 export default function Terms() {

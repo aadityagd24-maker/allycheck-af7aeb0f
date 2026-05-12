@@ -3,11 +3,11 @@ import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 
 const sections = [
-  { t: "Who We Are", b: "AllyCheck is a manual accessibility auditing agency. Our website is allycheck.in. You can contact us at hello@allycheck.in." },
+  { t: "Who We Are", b: "AllyCheck is a manual accessibility auditing agency. Our website is allycheck.in. You can contact us at addy@allycheck.in." },
   { t: "What Data We Collect", b: "We collect information you voluntarily submit via our contact form, including your name, job title, company name, email address, and product URL. We do not use tracking cookies, advertising pixels, or third-party analytics." },
   { t: "How We Use Your Data", b: "Information submitted through our contact form is used solely to respond to your enquiry and assess your accessibility requirements. We do not sell, share, or rent your data to any third parties." },
   { t: "Data Retention", b: "Enquiry data is retained for a maximum of 12 months, after which it is permanently deleted." },
-  { t: "Your Rights", b: "You have the right to request access to, correction of, or deletion of your personal data at any time. Contact us at hello@allycheck.in to exercise these rights." },
+  { t: "Your Rights", b: "You have the right to request access to, correction of, or deletion of your personal data at any time. Contact us at addy@allycheck.in to exercise these rights." },
   { t: "Changes to This Policy", b: "We may update this policy occasionally. The date at the top of this page reflects the most recent revision." },
 ];
 

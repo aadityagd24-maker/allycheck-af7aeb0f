@@ -39,26 +39,21 @@ export default function Nav() {
           <Link to="/#services" className="text-link">
             Services
           </Link>
+
           <Link to="/#process" className="text-link">
             Our Process
           </Link>
+
           <Link to="/#why-manual" className="text-link">
             Why Manual?
           </Link>
+
           <Link to="/book" className="text-link">
             Book a Call
           </Link>
         </nav>
 
         <div className="flex items-center gap-3">
-          <Link
-            to="/book"
-            className="btn-outline"
-            style={{ padding: "0.6rem 1.2rem", fontSize: "0.875rem" }}
-          >
-            Book a Call →
-          </Link>
-
           <Link
             to="/book"
             className="btn-primary"

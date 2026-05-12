@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import SectionLink from "@/components/SectionLink";
 
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
@@ -36,17 +37,17 @@ export default function Nav() {
           className="hidden md:flex items-center gap-8"
           style={{ fontSize: "0.875rem" }}
         >
-          <Link to="/#services" className="text-link">
+          <SectionLink sectionId="services" className="text-link">
             Services
-          </Link>
+          </SectionLink>
 
-          <Link to="/#process" className="text-link">
+          <SectionLink sectionId="process" className="text-link">
             Our Process
-          </Link>
+          </SectionLink>
 
-          <Link to="/#why-manual" className="text-link">
+          <SectionLink sectionId="why-manual" className="text-link">
             Why Manual?
-          </Link>
+          </SectionLink>
 
           <Link to="/book" className="text-link">
             Book a Call

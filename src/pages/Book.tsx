@@ -7,10 +7,15 @@ const CAL_LINK = "allycheck/15min";
 
 export default function Book() {
   useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior });
+
     const w = window as any;
+
     const init = () => {
       if (!w.Cal) return;
+
       w.Cal("init", { origin: "https://cal.com" });
+
       w.Cal("inline", {
         elementOrSelector: "#cal-embed",
         calLink: CAL_LINK,
@@ -21,33 +26,43 @@ export default function Book() {
     if (w.Cal) {
       init();
     } else {
-      // Inline the official Cal embed snippet
       (function (C: any, A: string, L: string) {
         const p = function (a: any, ar: any) {
           a.q.push(ar);
         };
+
         const d = C.document;
+
         C.Cal = C.Cal || function () {
           const cal = C.Cal;
           const ar = arguments;
+
           if (!cal.loaded) {
             cal.ns = {};
             cal.q = cal.q || [];
             d.head.appendChild(d.createElement("script")).src = A;
             cal.loaded = true;
           }
+
           if (ar[0] === L) {
             const api: any = function () {
               p(api, arguments);
             };
+
             const namespace = ar[1];
             api.q = api.q || [];
-            typeof namespace === "string" ? (cal.ns[namespace] = api) && p(api, ar) : p(cal, ar);
+
+            typeof namespace === "string"
+              ? (cal.ns[namespace] = api) && p(api, ar)
+              : p(cal, ar);
+
             return;
           }
+
           p(cal, ar);
         };
       })(window, "https://app.cal.com/embed/embed.js", "init");
+
       init();
     }
 
@@ -66,18 +81,29 @@ export default function Book() {
           content="Book a free 15-minute call with a senior accessibility auditor to assess your EAA exposure."
         />
       </Helmet>
+
       <Nav />
+
       <main className="section">
         <div className="container-x grid lg:grid-cols-5 gap-12">
           <div className="lg:col-span-3">
             <div className="eyebrow">Book a Call</div>
+
             <h2 className="h2 mt-5" style={{ fontFamily: "var(--font-display)" }}>
               Let's talk about your EAA exposure.
             </h2>
-            <p className="mt-6" style={{ color: "var(--ink-secondary)", fontSize: "1.1rem", maxWidth: "520px" }}>
-              Book a free 15-minute call with a senior auditor. No sales pitch — just an honest assessment of
-              where your product stands before your next enterprise procurement review.
+
+            <p
+              className="mt-6"
+              style={{
+                color: "var(--ink-secondary)",
+                fontSize: "1.1rem",
+                maxWidth: "520px",
+              }}
+            >
+              Book a free 15-minute call with a senior auditor. No sales pitch — just an honest assessment of where your product stands before your next enterprise procurement review.
             </p>
+
             <ul className="mt-10 space-y-4">
               {[
                 "Senior auditor on every call — not a sales rep",
@@ -90,6 +116,7 @@ export default function Book() {
                 </li>
               ))}
             </ul>
+
             <div
               className="mt-8"
               style={{
@@ -104,6 +131,7 @@ export default function Book() {
               Select your timezone.
             </div>
           </div>
+
           <div className="lg:col-span-2">
             <div
               id="cal-embed"
@@ -117,6 +145,7 @@ export default function Book() {
           </div>
         </div>
       </main>
+
       <Footer />
     </div>
   );

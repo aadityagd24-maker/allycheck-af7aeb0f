@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import SectionLink from "@/components/SectionLink";
 
 export default function Footer() {
   return (
@@ -17,27 +18,56 @@ export default function Footer() {
             hello@allycheck.in
           </a>
         </div>
+
         <div className="flex flex-col gap-2" style={{ fontSize: "0.95rem" }}>
-          <Link to="/#services" className="text-link w-fit">Services</Link>
-          <Link to="/#process" className="text-link w-fit">Our Process</Link>
-          <Link to="/#why-manual" className="text-link w-fit">Why Manual</Link>
-          <Link to="/book" className="text-link w-fit">Book a Call</Link>
-          <Link to="/privacy" className="text-link w-fit">Privacy Policy</Link>
-          <Link to="/terms" className="text-link w-fit">Terms of Service</Link>
+          <SectionLink sectionId="services" className="text-link w-fit">
+            Services
+          </SectionLink>
+
+          <SectionLink sectionId="process" className="text-link w-fit">
+            Our Process
+          </SectionLink>
+
+          <SectionLink sectionId="why-manual" className="text-link w-fit">
+            Why Manual
+          </SectionLink>
+
+          <Link to="/book" className="text-link w-fit">
+            Book a Call
+          </Link>
+
+          <Link to="/privacy" className="text-link w-fit">
+            Privacy Policy
+          </Link>
+
+          <Link to="/terms" className="text-link w-fit">
+            Terms of Service
+          </Link>
         </div>
+
         <div>
-          <Link to="/book" className="btn-outline">Book a Call</Link>
+          <Link to="/book" className="btn-outline">
+            Book a Call
+          </Link>
         </div>
       </div>
+
       <div style={{ borderTop: "1px solid var(--rule)" }}>
         <div className="container-x py-6 flex flex-col gap-2" style={{ fontSize: "0.8rem", color: "var(--ink-secondary)" }}>
           <div className="flex flex-wrap justify-between gap-3">
             <div>© 2025 AllyCheck. All rights reserved.</div>
+
             <div className="flex gap-6">
-              <Link to="/privacy" className="text-link">Privacy Policy</Link>
-              <Link to="/terms" className="text-link">Terms of Service</Link>
+              <Link to="/privacy" className="text-link">
+                Privacy Policy
+              </Link>
+
+              <Link to="/terms" className="text-link">
+                Terms of Service
+              </Link>
             </div>
           </div>
+
           <div style={{ fontSize: "0.75rem" }}>
             AllyCheck is a registered accessibility consultancy. Registered in India.
           </div>

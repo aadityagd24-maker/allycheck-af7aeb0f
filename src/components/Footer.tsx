@@ -55,7 +55,7 @@ export default function Footer() {
       <div style={{ borderTop: "1px solid var(--rule)" }}>
         <div className="container-x py-6 flex flex-col gap-2" style={{ fontSize: "0.8rem", color: "var(--ink-secondary)" }}>
           <div className="flex flex-wrap justify-between gap-3">
-            <div>© 2025 AllyCheck. All rights reserved.</div>
+            <div>© 2026 AllyCheck. All rights reserved.</div>
 
             <div className="flex gap-6">
               <Link to="/privacy" className="text-link">

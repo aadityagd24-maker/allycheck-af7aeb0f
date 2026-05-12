@@ -24,7 +24,7 @@ export default function Terms() {
             Terms of Service
           </h1>
           <div className="mt-3" style={{ color: "var(--ink-secondary)", fontSize: "0.9rem" }}>
-            Last updated: May 2025
+            Last updated: May 2026
           </div>
           <div className="mt-12 space-y-10">
             {sections.map((s) => (

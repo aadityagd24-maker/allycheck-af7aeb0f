@@ -48,6 +48,7 @@
   }
   html {
     scroll-behavior: smooth;
+    scroll-padding-top: 96px;
   }
   body {
     background-color: var(--bg);
@@ -84,6 +85,7 @@
   .section {
     padding-top: 7rem;
     padding-bottom: 7rem;
+    scroll-margin-top: 96px;
   }
   @media (max-width: 768px) {
     .section { padding-top: 4.5rem; padding-bottom: 4.5rem; }

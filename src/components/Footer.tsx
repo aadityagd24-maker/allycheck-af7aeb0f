@@ -11,11 +11,11 @@ export default function Footer() {
             Manual Accessibility Audits & VPAT Certification for SaaS Companies.
           </p>
           <a
-            href="mailto:hello@allycheck.in"
+            href="mailto:addy@allycheck.in"
             className="mt-4 inline-block hover:underline"
             style={{ color: "var(--ink-secondary)", fontSize: "0.95rem" }}
           >
-            hello@allycheck.in
+            addy@allycheck.in
           </a>
         </div>
 

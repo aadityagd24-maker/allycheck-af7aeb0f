@@ -146,22 +146,12 @@ function Services() {
 
               <h3 className="h3 mt-6">{c.t}</h3>
 
-              <p
-                className="mt-4"
-                style={{ color: "var(--ink-secondary)" }}
-              >
+              <p className="mt-4" style={{ color: "var(--ink-secondary)" }}>
                 {c.b}
               </p>
 
-              <div
-                className="mt-8 pt-6"
-                style={{ borderTop: "1px solid var(--rule)" }}
-              >
-                <Link
-                  to="/book"
-                  className="text-link"
-                  style={{ color: "var(--accent)" }}
-                >
+              <div className="mt-8 pt-6" style={{ borderTop: "1px solid var(--rule)" }}>
+                <Link to="/book" className="text-link" style={{ color: "var(--accent)" }}>
                   Book a call →
                 </Link>
               </div>
@@ -173,30 +163,68 @@ function Services() {
   );
 }
 
+function WhyManual() {
+  return (
+    <section id="why-manual" className="section" style={{ background: "var(--surface)" }}>
+      <div className="container-x">
+        <div className="text-center max-w-3xl mx-auto">
+          <div className="eyebrow">Why Manual?</div>
+          <h2 className="h2 mt-5">Widgets do not equal compliance.</h2>
+          <p className="mt-6" style={{ color: "var(--ink-secondary)", fontSize: "1.05rem" }}>
+            Automated overlays can hide some friction, but they do not replace real testing, real documentation, or real accountability.
+          </p>
+        </div>
+
+        <div className="mt-16 grid md:grid-cols-2 gap-10">
+          <div style={{ borderLeft: "3px solid var(--danger)", paddingLeft: "2rem" }}>
+            <div className="eyebrow" style={{ color: "var(--danger)" }}>
+              What most companies do
+            </div>
+            <h3 className="h3 mt-3">Install a widget and hope procurement does not notice.</h3>
+            <p className="mt-5" style={{ color: "var(--ink-secondary)" }}>
+              Overlay tools may change appearance, but they do not fully validate keyboard flows, screen reader behavior, focus order, or document-ready compliance evidence. That is where deals get lost.
+            </p>
+          </div>
+
+          <div style={{ borderLeft: "3px solid var(--accent)", paddingLeft: "2rem" }}>
+            <div className="eyebrow">The AllyCheck approach</div>
+            <h3 className="h3 mt-3">Human auditors. Real reports. Better close rates.</h3>
+            <p className="mt-5" style={{ color: "var(--ink-secondary)" }}>
+              Every audit is manually reviewed, every issue is documented, and every report is written for legal, procurement, and engineering teams.
+            </p>
+            <ul className="mt-6 space-y-2.5">
+              {[
+                "WCAG 2.1 AA & 2.2 coverage",
+                "VPAT 2.4 documentation",
+                "Assistive technology testing",
+                "Developer-ready remediation guidance",
+              ].map((item) => (
+                <li key={item} className="flex items-start gap-3" style={{ fontSize: "0.95rem" }}>
+                  <span style={{ color: "var(--accent)", fontWeight: 700 }}>✓</span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function Process() {
   return (
-    <section
-      id="process"
-      className="section"
-      style={{ background: "var(--surface)" }}
-    >
+    <section id="process" className="section" style={{ background: "var(--surface)" }}>
       <div className="container-x text-center max-w-4xl">
         <div className="eyebrow">Our Process</div>
-
         <h2 className="h2 mt-5">
           Audit to Certified.
           <br />
           In Three Steps.
         </h2>
-
-        <p
-          className="mt-8"
-          style={{ color: "var(--ink-secondary)", fontSize: "1.05rem" }}
-        >
-          We scope your product, conduct a manual accessibility audit, and
-          deliver VPAT certification with developer-ready remediation guidance.
+        <p className="mt-8" style={{ color: "var(--ink-secondary)", fontSize: "1.05rem" }}>
+          We scope your product, conduct a manual accessibility audit, and deliver VPAT certification with developer-ready remediation guidance.
         </p>
-
         <div className="mt-10">
           <Link to="/book" className="btn-primary">
             Book a 15-Minute Call
@@ -211,24 +239,16 @@ export default function Home() {
   return (
     <div style={{ background: "var(--bg)" }}>
       <Helmet>
-        <title>
-          AllyCheck — Manual Accessibility Audits & VPAT Certification
-        </title>
-
-        <meta
-          name="description"
-          content="Manual accessibility audits and VPAT certification for SaaS companies navigating the European Accessibility Act and UK Equality Act."
-        />
+        <title>AllyCheck — Manual Accessibility Audits & VPAT Certification</title>
+        <meta name="description" content="Manual accessibility audits and VPAT certification for SaaS companies navigating the European Accessibility Act and UK Equality Act." />
       </Helmet>
-
       <Nav />
-
       <main>
         <Hero />
         <Services />
+        <WhyManual />
         <Process />
       </main>
-
       <Footer />
     </div>
   );

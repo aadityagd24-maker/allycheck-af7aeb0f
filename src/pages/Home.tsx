@@ -128,20 +128,109 @@ function WhyManual() {
 }
 
 function Process() {
+  const steps = [
+    {
+      no: "01",
+      title: "Scope & Discovery",
+      body: "We map every user flow, screen, and interaction in your SaaS product to define the full audit scope. That gives the audit a precise perimeter and prevents the usual guessing game about what is and is not included.",
+      time: "Day 1–2",
+    },
+    {
+      no: "02",
+      title: "Manual WCAG Audit",
+      body: "A certified auditor tests every component using real screen readers such as NVDA and VoiceOver, plus keyboard navigation against WCAG 2.2 AA criteria. The result is a true issue inventory, not an automated scan summary.",
+      time: "Day 3–12",
+    },
+    {
+      no: "03",
+      title: "VPAT Delivery & Dev Roadmap",
+      body: "You receive a signed VPAT 2.5 document plus a developer-ready remediation report with exact code fixes, prioritized by severity. It is written so legal, product, and engineering can act on it immediately.",
+      time: "Day 14",
+    },
+  ];
+
   return (
-    <section className="section" style={{ background: "var(--surface)" }}>
-      <div id="process" className="container-x text-center max-w-4xl" style={{ scrollMarginTop: "112px" }}>
-        <div className="eyebrow">Our Process</div>
-        <h2 className="h2 mt-5">
-          Audit to Certified.
-          <br />
-          In Three Steps.
-        </h2>
-        <p className="mt-8" style={{ color: "var(--ink-secondary)", fontSize: "1.05rem" }}>
-          We scope your product, conduct a manual accessibility audit, and deliver VPAT certification with developer-ready remediation guidance.
-        </p>
-        <div className="mt-10">
-          <Link to="/book" className="btn-primary">Book a 15-Minute Call</Link>
+    <section
+      className="section"
+      style={{ background: "#fafaf8", borderTop: "1px solid rgba(26,58,42,0.08)", borderBottom: "1px solid rgba(26,58,42,0.08)" }}
+    >
+      <div id="process" className="container-x" style={{ scrollMarginTop: "112px" }}>
+        <div className="max-w-3xl">
+          <div className="eyebrow" style={{ color: "#1a3a2a" }}>Our Process</div>
+          <h2 className="mt-5" style={{ fontFamily: "var(--font-display)", fontSize: "clamp(2rem, 3.5vw, 3rem)", lineHeight: 1.05, color: "#1a3a2a" }}>
+            A measured process for legal-grade accessibility work.
+          </h2>
+        </div>
+
+        <div className="mt-12 grid gap-8 md:grid-cols-3 md:gap-6 relative">
+          <div
+            aria-hidden
+            className="hidden md:block absolute"
+            style={{ top: "4.5rem", left: "16.5%", right: "16.5%", height: "1px", background: "rgba(26,58,42,0.18)" }}
+          />
+
+          {steps.map((step, index) => (
+            <article
+              key={step.no}
+              className="relative"
+              style={{
+                background: "#fafaf8",
+                border: "1px solid rgba(26,58,42,0.14)",
+                padding: "2rem 1.75rem 1.75rem",
+              }}
+            >
+              <div
+                aria-hidden
+                className="hidden md:block absolute"
+                style={{
+                  top: "4.2rem",
+                  left: index === 0 ? "100%" : index === 1 ? "100%" : "auto",
+                  right: index === 2 ? "auto" : "auto",
+                  width: index < 2 ? "1rem" : 0,
+                  height: "1px",
+                  background: "rgba(26,58,42,0.18)",
+                }}
+              />
+
+              <div style={{ fontFamily: "var(--font-display)", fontSize: "4.5rem", lineHeight: 1, color: "rgba(26,58,42,0.22)" }}>
+                {step.no}
+              </div>
+
+              <h3 style={{ marginTop: "1rem", fontFamily: "var(--font-display)", fontSize: "1.55rem", lineHeight: 1.15, color: "#1a3a2a" }}>
+                {step.title}
+              </h3>
+
+              <p style={{ marginTop: "0.9rem", color: "rgba(26,58,42,0.85)", fontSize: "0.98rem" }}>
+                {step.body}
+              </p>
+
+              <div
+                style={{
+                  display: "inline-flex",
+                  marginTop: "1.25rem",
+                  padding: "0.4rem 0.7rem",
+                  border: "1px solid rgba(26,58,42,0.18)",
+                  color: "#1a3a2a",
+                  fontSize: "0.78rem",
+                  letterSpacing: "0.08em",
+                  textTransform: "uppercase",
+                  fontWeight: 600,
+                }}
+              >
+                {step.time}
+              </div>
+            </article>
+          ))}
+        </div>
+
+        <div className="mt-12 flex justify-center">
+          <Link
+            to="/book"
+            className="btn-primary"
+            style={{ background: "#1a3a2a", color: "#fafaf8", padding: "0.95rem 1.6rem" }}
+          >
+            Book a 15-Minute Call
+          </Link>
         </div>
       </div>
     </section>

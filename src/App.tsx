@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import Book from "./pages/Book";
 import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
+import SeoPages from "./pages/SeoPages";
 import NotFound from "./pages/NotFound";
 
 function ScrollToHash() {
@@ -46,6 +47,7 @@ export default function App() {
         <Route path="/book" element={<Book />} />
         <Route path="/privacy" element={<Privacy />} />
         <Route path="/terms" element={<Terms />} />
+        <Route path="/:slug" element={<SeoPages />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>

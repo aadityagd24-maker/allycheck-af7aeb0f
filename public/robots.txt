@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://allycheck.in/sitemap.xml

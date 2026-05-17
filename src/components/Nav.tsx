@@ -1,15 +1,24 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import SectionLink from "@/components/SectionLink";
 
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  const handleLogoClick = () => {
+    if (location.pathname === "/") {
+      requestAnimationFrame(() => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    }
+  };
 
   return (
     <header
@@ -24,6 +33,7 @@ export default function Nav() {
       <div className="container-x flex items-center justify-between py-4 gap-4">
         <Link
           to="/"
+          onClick={handleLogoClick}
           style={{
             fontFamily: "var(--font-display)",
             fontSize: "1.25rem",

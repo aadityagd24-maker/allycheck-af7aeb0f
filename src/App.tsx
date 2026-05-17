@@ -38,18 +38,30 @@ function ScrollToHash() {
   return null;
 }
 
+function RouteTransition({ children }: { children: React.ReactNode }) {
+  const location = useLocation();
+
+  return (
+    <div key={location.pathname} className="route-transition">
+      {children}
+    </div>
+  );
+}
+
 export default function App() {
   return (
     <>
       <ScrollToHash />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/book" element={<Book />} />
-        <Route path="/privacy" element={<Privacy />} />
-        <Route path="/terms" element={<Terms />} />
-        <Route path="/:slug" element={<SeoPages />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+      <RouteTransition>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/book" element={<Book />} />
+          <Route path="/privacy" element={<Privacy />} />
+          <Route path="/terms" element={<Terms />} />
+          <Route path="/:slug" element={<SeoPages />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </RouteTransition>
     </>
   );
 }

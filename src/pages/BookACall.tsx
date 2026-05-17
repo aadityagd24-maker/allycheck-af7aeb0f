@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
-import BrandMark from "@/components/BrandMark";
 
 export default function BookACall() {
   return (
@@ -12,12 +11,15 @@ export default function BookACall() {
 
       <header style={{ borderBottom: "1px solid var(--rule)", background: "var(--bg)" }}>
         <div className="container-x flex items-center justify-between py-4">
-          <Link to="/" className="flex items-center gap-3">
-            <BrandMark size={42} />
-
-            <span style={{ fontFamily: "var(--font-display)", fontSize: "1.25rem", color: "var(--ink)" }}>
-              AllyCheck
-            </span>
+          <Link
+            to="/"
+            style={{
+              fontFamily: "var(--font-display)",
+              fontSize: "1.25rem",
+              color: "var(--ink)",
+            }}
+          >
+            AllyCheck
           </Link>
 
           <Link to="/" className="text-link" style={{ fontSize: "0.875rem" }}>

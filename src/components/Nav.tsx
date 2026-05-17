@@ -22,9 +22,12 @@ export default function Nav() {
       }}
     >
       <div className="container-x flex items-center justify-between py-4 gap-4">
-        <SectionLink
-          sectionId="top"
+        <Link
+          to="/"
           className="inline-flex items-center"
+          onClick={() => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          }}
         >
           <span
             style={{
@@ -35,7 +38,7 @@ export default function Nav() {
           >
             AllyCheck
           </span>
-        </SectionLink>
+        </Link>
 
         <nav
           className="hidden md:flex items-center gap-8"

@@ -118,5 +118,5 @@ export default function SeoPages() {
     return <Navigate to="/" replace />;
   }
 
-  return <SeoServicePage {...pages[slug]} />;
+  return <SeoServicePage slug={slug} {...pages[slug]} />;
 }

@@ -9,6 +9,7 @@ export type SeoFaq = {
 };
 
 export type SeoServicePageProps = {
+  slug: string;
   title: string;
   subtitle: string;
   metaDescription: string;
@@ -27,6 +28,7 @@ export type SeoServicePageProps = {
 };
 
 export default function SeoServicePage({
+  slug,
   title,
   subtitle,
   metaDescription,
@@ -43,11 +45,27 @@ export default function SeoServicePage({
   ctaLabel,
   ctaSection = "contact",
 }: SeoServicePageProps) {
+  const pageTitle = `${title} — AllyCheck`;
+  const canonicalUrl = `https://allycheck.lovable.app/${slug}`;
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: { "@type": "Answer", text: f.a },
+    })),
+  };
   return (
     <div style={{ background: "var(--bg)", minHeight: "100vh" }}>
       <Helmet>
-        <title>{title} — AllyCheck</title>
+        <title>{pageTitle}</title>
         <meta name="description" content={metaDescription} />
+        <link rel="canonical" href={canonicalUrl} />
+        <meta property="og:title" content={pageTitle} />
+        <meta property="og:description" content={metaDescription} />
+        <meta property="og:url" content={canonicalUrl} />
+        <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
       </Helmet>
 
       <Nav />

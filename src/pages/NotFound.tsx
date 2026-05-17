@@ -6,6 +6,8 @@ export default function NotFound() {
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
       <Helmet>
         <title>Page not found — AllyCheck</title>
+        <meta name="description" content="The page you're looking for doesn't exist. Return to AllyCheck for manual accessibility audits and VPAT certification services." />
+        <meta name="robots" content="noindex, follow" />
       </Helmet>
       <div className="max-w-md text-center">
         <h1 className="text-7xl font-bold text-foreground">404</h1>

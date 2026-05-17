@@ -243,6 +243,10 @@ export default function Home() {
       <Helmet>
         <title>AllyCheck — Manual Accessibility Audits & VPAT Certification</title>
         <meta name="description" content="Manual accessibility audits and VPAT certification for SaaS companies navigating the European Accessibility Act and UK Equality Act." />
+        <link rel="canonical" href="https://allycheck.lovable.app/" />
+        <meta property="og:title" content="AllyCheck — Manual Accessibility Audits & VPAT Certification" />
+        <meta property="og:description" content="Manual accessibility audits and VPAT certification for SaaS companies navigating the European Accessibility Act and UK Equality Act." />
+        <meta property="og:url" content="https://allycheck.lovable.app/" />
       </Helmet>
       <Nav />
       <main>

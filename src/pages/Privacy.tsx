@@ -16,7 +16,11 @@ export default function Privacy() {
     <div style={{ background: "var(--bg)", minHeight: "100vh" }}>
       <Helmet>
         <title>Privacy Policy — AllyCheck</title>
-        <meta name="description" content="AllyCheck privacy policy." />
+        <meta name="description" content="How AllyCheck collects, uses, retains, and protects information submitted through our contact form. No tracking cookies or third-party analytics." />
+        <link rel="canonical" href="https://allycheck.lovable.app/privacy" />
+        <meta property="og:title" content="Privacy Policy — AllyCheck" />
+        <meta property="og:description" content="How AllyCheck collects, uses, retains, and protects information submitted through our contact form. No tracking cookies or third-party analytics." />
+        <meta property="og:url" content="https://allycheck.lovable.app/privacy" />
       </Helmet>
       <Nav />
       <main className="section">

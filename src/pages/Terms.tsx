@@ -15,7 +15,11 @@ export default function Terms() {
     <div style={{ background: "var(--bg)", minHeight: "100vh" }}>
       <Helmet>
         <title>Terms of Service — AllyCheck</title>
-        <meta name="description" content="AllyCheck terms of service." />
+        <meta name="description" content="Terms governing use of the AllyCheck website, our manual accessibility audit and VPAT certification services, liability, and applicable law." />
+        <link rel="canonical" href="https://allycheck.lovable.app/terms" />
+        <meta property="og:title" content="Terms of Service — AllyCheck" />
+        <meta property="og:description" content="Terms governing use of the AllyCheck website, our manual accessibility audit and VPAT certification services, liability, and applicable law." />
+        <meta property="og:url" content="https://allycheck.lovable.app/terms" />
       </Helmet>
       <Nav />
       <main className="section">

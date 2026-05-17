@@ -80,6 +80,10 @@ export default function Book() {
           name="description"
           content="Book a free 15-minute call with a senior accessibility auditor to assess your EAA exposure."
         />
+        <link rel="canonical" href="https://allycheck.lovable.app/book" />
+        <meta property="og:title" content="Book a 15-Minute Call — AllyCheck" />
+        <meta property="og:description" content="Book a free 15-minute call with a senior accessibility auditor to assess your EAA exposure." />
+        <meta property="og:url" content="https://allycheck.lovable.app/book" />
       </Helmet>
 
       <Nav />

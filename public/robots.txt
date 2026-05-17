@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://allycheck.in/sitemap.xml
+Sitemap: https://allycheck.lovable.app/sitemap.xml

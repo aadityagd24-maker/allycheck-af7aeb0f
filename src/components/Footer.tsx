@@ -1,15 +1,24 @@
 import { Link } from "react-router-dom";
 import SectionLink from "@/components/SectionLink";
+import BrandMark from "@/components/BrandMark";
 
 export default function Footer() {
   return (
     <footer style={{ background: "var(--surface)", borderTop: "1px solid var(--rule)" }}>
       <div className="container-x py-16 grid md:grid-cols-3 gap-10">
         <div>
-          <div style={{ fontFamily: "var(--font-display)", fontSize: "1.5rem" }}>AllyCheck</div>
+          <div className="flex items-center gap-3">
+            <BrandMark size={48} />
+
+            <div style={{ fontFamily: "var(--font-display)", fontSize: "1.5rem" }}>
+              AllyCheck
+            </div>
+          </div>
+
           <p className="mt-3" style={{ color: "var(--ink-secondary)", fontSize: "0.95rem", maxWidth: "320px" }}>
             Manual Accessibility Audits & VPAT Certification for SaaS Companies.
           </p>
+
           <a
             href="mailto:addy@allycheck.in"
             className="mt-4 inline-block hover:underline"

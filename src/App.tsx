@@ -22,9 +22,7 @@ function ScrollToHash() {
         }
       }
 
-      if (location.pathname === "/" && !hash) {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      }
+      window.scrollTo({ top: 0, behavior: "auto" });
     };
 
     const raf1 = window.requestAnimationFrame(() => {

@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import SectionLink from "@/components/SectionLink";
-import BrandMark from "@/components/BrandMark";
 
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
@@ -25,22 +24,13 @@ export default function Nav() {
       <div className="container-x flex items-center justify-between py-4 gap-4">
         <Link
           to="/"
-          className="inline-flex items-center gap-3"
-          onClick={() => {
-            window.scrollTo({ top: 0, behavior: "smooth" });
+          style={{
+            fontFamily: "var(--font-display)",
+            fontSize: "1.25rem",
+            color: "var(--ink)",
           }}
         >
-          <BrandMark size={42} />
-
-          <span
-            style={{
-              fontFamily: "var(--font-display)",
-              fontSize: "1.25rem",
-              color: "var(--ink)",
-            }}
-          >
-            AllyCheck
-          </span>
+          AllyCheck
         </Link>
 
         <nav

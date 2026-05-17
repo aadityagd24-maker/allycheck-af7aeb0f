@@ -67,10 +67,6 @@ export default function Footer() {
               </Link>
             </div>
           </div>
-
-          <div style={{ fontSize: "0.75rem" }}>
-            AllyCheck is a registered accessibility consultancy. Registered in India.
-          </div>
         </div>
       </div>
     </footer>

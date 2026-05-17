@@ -43,6 +43,26 @@ function RouteTransition({ children }: { children: React.ReactNode }) {
 
   return (
     <div key={location.pathname} className="route-transition">
+      <style>
+        {`
+          .route-transition {
+            animation: routeFade 320ms cubic-bezier(0.22, 1, 0.36, 1);
+            will-change: opacity, transform;
+          }
+
+          @keyframes routeFade {
+            from {
+              opacity: 0;
+              transform: translateY(8px);
+            }
+            to {
+              opacity: 1;
+              transform: translateY(0);
+            }
+          }
+        `}
+      </style>
+
       {children}
     </div>
   );
@@ -52,6 +72,7 @@ export default function App() {
   return (
     <>
       <ScrollToHash />
+
       <RouteTransition>
         <Routes>
           <Route path="/" element={<Home />} />

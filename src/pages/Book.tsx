@@ -93,9 +93,9 @@ export default function Book() {
           <div className="lg:col-span-3">
             <div className="eyebrow">Book a Call</div>
 
-            <h2 className="h2 mt-5" style={{ fontFamily: "var(--font-display)" }}>
+            <h1 className="h2 mt-5" style={{ fontFamily: "var(--font-display)" }}>
               Let's talk about your EAA exposure.
-            </h2>
+            </h1>
 
             <p
               className="mt-6"

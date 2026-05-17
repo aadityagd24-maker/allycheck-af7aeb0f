@@ -33,7 +33,7 @@ export default function Terms() {
           <div className="mt-12 space-y-10">
             {sections.map((s) => (
               <section key={s.t}>
-                <h3 className="h3">{s.t}</h3>
+                <h2 className="h3">{s.t}</h2>
                 <p className="mt-3" style={{ color: "var(--ink-secondary)" }}>{s.b}</p>
               </section>
             ))}

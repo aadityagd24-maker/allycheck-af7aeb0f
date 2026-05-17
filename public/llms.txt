@@ -1,0 +1,21 @@
+# AllyCheck
+
+> Manual accessibility audits and VPAT certification for SaaS companies preparing for the European Accessibility Act, UK Equality Act, and enterprise procurement reviews.
+
+AllyCheck is a manual accessibility auditing agency. We deliver human-led WCAG 2.2 AA audits, VPAT 2.5 documentation, and developer-ready remediation roadmaps that enterprise procurement teams accept.
+
+## Pages
+
+- [Home](/): Overview of AllyCheck's manual accessibility audit and VPAT services.
+- [Book a Call](/book): Schedule a free 15-minute call with a senior accessibility auditor.
+- [WCAG Audit](/wcag-audit): Manual WCAG 2.2 AA accessibility audit services for SaaS platforms.
+- [VPAT Certification](/vpat-certification): VPAT documentation and accessibility conformance reporting.
+- [EAA Compliance](/eaa-compliance): European Accessibility Act readiness for enterprise SaaS.
+- [Accessibility Consulting](/accessibility-consulting): Consulting for procurement, remediation, and accessibility programs.
+- [WCAG 2.2 AA](/wcag-2-2-aa): WCAG 2.2 AA compliance guidance and manual testing.
+- [Screen Reader Testing](/screen-reader-testing): NVDA, VoiceOver, and keyboard accessibility testing.
+
+## Optional
+
+- [Privacy](/privacy): Privacy policy.
+- [Terms](/terms): Terms of service.

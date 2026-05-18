@@ -1,5 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="AllyCheck">
-  <rect width="64" height="64" rx="14" fill="#1a3a2a"/>
-  <path d="M18 33c4-8 10-12 18-12 3 0 6 .6 9 1.8" fill="none" stroke="#fafaf8" stroke-width="4" stroke-linecap="round"/>
-  <path d="M46 31c-4 8-10 12-18 12-3 0-6-.6-9-1.8" fill="none" stroke="#fafaf8" stroke-width="4" stroke-linecap="round"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="AllyCheck">
+  <image
+    href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAGJUlEQVR4nO2dX4hdVRnHz2t2YmJm5h8lJkVnWkG0C4i0oJQ6UQhA0k1q0j5H4b4YB0C3q7w1kM6pS7SgQbV0mGxjZ0k0Z8mKf2D2k2hQJ4f0M4Jzv1f8wzjzv3f+f+7n3n3vP2d3v3v2f3+Q8m5m8o0r9d0fY6nWfW2m2d2l3m5Yy9gQw1mVdRjQ8x3wV0m5wXfQmN2mR4d4t2mG0uQw2M3h2m6zXr9fJ8m8v2Vw6u4X6a8v2eXW2Qq8wXh2m7g1m5qfG4bq7lK8m3w1n8o3k9m7w1j4M7o3f7s8v9m3w7b3k7m0m8N6b1w3r8v5m5m2c8p6b8x8m1m8m2m9x6x8r6b9m4m4m4m4m4m4m4m4m4m4m4m4m4m4m4m4m4m4m4m4m4m4m4m4m4m4m4m4m4m4m4m4m4m4m4m4m4m4m4m4m4m4m4m4m4m4m4m4m4m4m4m4m4"
+    width="128"
+    height="128"
+    preserveAspectRatio="xMidYMid meet"
+  />
 </svg>

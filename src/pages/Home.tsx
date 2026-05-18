@@ -66,7 +66,7 @@ function Services() {
         <div className="mt-14 grid md:grid-cols-3 gap-8">
           {cards.map((c) => (
             <article key={c.n} className="card flex flex-col">
-              <div style={{ fontFamily: "var(--font-display)", fontSize: "3rem", color: "var(--rule)" }}>{c.n}</div>
+              <div style={{ fontFamily: "var(--font-display)", fontSize: "3rem", color: "var(--ink-secondary)" }}>{c.n}</div>
               <h3 className="h3 mt-6">{c.t}</h3>
               <p className="mt-4" style={{ color: "var(--ink-secondary)" }}>{c.b}</p>
               <div className="mt-8 pt-6" style={{ borderTop: "1px solid var(--rule)" }}>
@@ -192,7 +192,7 @@ function Process() {
                 }}
               />
 
-              <div style={{ fontFamily: "var(--font-display)", fontSize: "4.5rem", lineHeight: 1, color: "rgba(26,58,42,0.22)" }}>
+              <div style={{ fontFamily: "var(--font-display)", fontSize: "4.5rem", lineHeight: 1, color: "rgba(26,58,42,0.62)" }}>
                 {step.no}
               </div>
 
@@ -247,6 +247,19 @@ export default function Home() {
         <meta property="og:title" content="AllyCheck — Manual Accessibility Audits & VPAT Certification" />
         <meta property="og:description" content="Manual accessibility audits and VPAT certification for SaaS companies navigating the European Accessibility Act and UK Equality Act." />
         <meta property="og:url" content="https://allycheck.lovable.app/" />
+        <meta property="og:type" content="website" />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "ProfessionalService",
+            name: "AllyCheck",
+            url: "https://allycheck.lovable.app/",
+            description:
+              "Manual accessibility audits and VPAT certification for SaaS companies navigating the European Accessibility Act and UK Equality Act.",
+            serviceType: "Accessibility audit and VPAT certification",
+            email: "addy@allycheck.in",
+          })}
+        </script>
       </Helmet>
       <Nav />
       <main>

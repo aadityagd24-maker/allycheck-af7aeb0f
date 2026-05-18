@@ -21,6 +21,7 @@ export default function Privacy() {
         <meta property="og:title" content="Privacy Policy — AllyCheck" />
         <meta property="og:description" content="How AllyCheck collects, uses, retains, and protects information submitted through our contact form. No tracking cookies or third-party analytics." />
         <meta property="og:url" content="https://allycheck.lovable.app/privacy" />
+        <meta property="og:type" content="website" />
       </Helmet>
       <Nav />
       <main className="section">

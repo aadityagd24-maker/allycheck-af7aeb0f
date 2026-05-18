@@ -56,6 +56,19 @@ export default function SeoServicePage({
       acceptedAnswer: { "@type": "Answer", text: f.a },
     })),
   };
+  const serviceJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: title,
+    serviceType: title.includes("VPAT") ? "VPAT Certification" : "Accessibility Audit",
+    description: metaDescription,
+    url: canonicalUrl,
+    provider: {
+      "@type": "Organization",
+      name: "AllyCheck",
+      url: "https://allycheck.lovable.app/",
+    },
+  };
   return (
     <div style={{ background: "var(--bg)", minHeight: "100vh" }}>
       <Helmet>
@@ -65,6 +78,8 @@ export default function SeoServicePage({
         <meta property="og:title" content={pageTitle} />
         <meta property="og:description" content={metaDescription} />
         <meta property="og:url" content={canonicalUrl} />
+        <meta property="og:type" content="website" />
+        <script type="application/ld+json">{JSON.stringify(serviceJsonLd)}</script>
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
       </Helmet>
 
@@ -132,7 +147,7 @@ export default function SeoServicePage({
             <div className="mt-10 grid gap-6 md:grid-cols-3">
               {processSteps.map((step, idx) => (
                 <article key={step.title} style={{ border: "1px solid rgba(26,58,42,0.14)", background: "#fafaf8", padding: "1.5rem" }}>
-                  <div style={{ fontFamily: "var(--font-display)", fontSize: "2.8rem", lineHeight: 1, color: "rgba(26,58,42,0.22)" }}>
+                  <div style={{ fontFamily: "var(--font-display)", fontSize: "2.8rem", lineHeight: 1, color: "rgba(26,58,42,0.62)" }}>
                     0{idx + 1}
                   </div>
                   <h3 className="mt-4" style={{ fontFamily: "var(--font-display)", fontSize: "1.35rem", color: "#1a3a2a" }}>
